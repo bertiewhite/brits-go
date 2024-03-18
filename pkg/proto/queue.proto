@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option go_package = "github.com/bertiewhite/brits-go/internal/proto";
+
+package messagequeue;
+
+service MessageQueue {
+    rpc Send(stream MessagePayload) returns (Empty);
+    rpc Receive(Empty) returns (stream MessagePayload); 
+}
+
+message MessagePayload {
+    bytes data = 1;
+}
+
+message Empty {}
+
